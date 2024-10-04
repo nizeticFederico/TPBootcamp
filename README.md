@@ -1,3 +1,6 @@
+------> Profe Aca subo el repositorio del grupo 01 actualizado . Integrantes: Marcos Federico Nizetic , Dana Error, Ruben Ledesma , Augusto Catterino
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
