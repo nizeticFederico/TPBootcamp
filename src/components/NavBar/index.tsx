@@ -1,41 +1,27 @@
-import Link from "next/link";
+"use client"
 
-/* interface Props {
-    label: string,
-    route: string
-} */
+import Link from "next/link";
+import { useSharedState } from "@/context";
 
 const navItems = [
-    {
-        label: 'Home',
-        route: '/'
-    },
-    {
-        label: 'Products',
-        route: '/products'
-    },
-    {
-        label: 'Carrito',
-        route: '/cart'
-    }
-]
+    { label: 'Home', route: '/' },
+    { label: 'Products', route: '/products' },
+    { label: 'Carrito', route: '/cart' }
+];
 
-const NavBar = () => {
-    
+function NavBar(){
+    const { cartQuantity } = useSharedState()!;
 
+    return (
+        <nav className="flex text-center justify-center bg-black text-white gap-10 text-xl">
+            {navItems.map((item, index) => (
+                <Link key={index} href={item.route}>
+                    {item.label}
+                </Link>
+            ))}
+            <div>Cart Quantity: {cartQuantity}</div>
+        </nav>
+    );
+};
 
-  return (
-  <nav className="flex text-center justify-center bg-black text-white gap-10 text-xl">
-      {navItems.map((item, index) => {
-          return (
-          <Link key={index} href={item.route}>
-              {item.label}
-          </Link>
-              
-        );
-      })}
-  </nav>
-  )
-}
-
-export default NavBar
+export default NavBar;

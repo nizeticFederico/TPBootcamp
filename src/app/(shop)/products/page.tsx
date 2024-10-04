@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useSharedState } from "@/context";
 
 export interface Props {
     id: number,
@@ -14,6 +15,8 @@ export interface Props {
 
 export default function ProductList() {
     const [products, setProducts] = useState<Props[]>([])
+    const {cartQuantity , setCartQuantity} = useSharedState()!;
+
     useEffect(()=>{
         (async ()=>{
             try {
@@ -41,7 +44,10 @@ return(
             <p>${product.price}</p>
             <div className="flex items-center gap-4 ">
                 <button className="bg-black text-white border border-white hover:bg-white hover:text-black transition-colors duration-300 py-2 px-4 rounded">Comprar</button>
-                <button className="bg-black text-white border border-white hover:bg-white hover:text-black transition-colors duration-300 py-2 px-4 rounded">Agregar al carrito</button>
+                <button onClick={(e) => {
+                                e.stopPropagation(); 
+                                setCartQuantity(cartQuantity + 1);
+                            }} className="bg-black text-white border border-white hover:bg-white hover:text-black transition-colors duration-300 py-2 px-4 rounded">Agregar al carrito</button>
             </div>
         </div>
     ))}

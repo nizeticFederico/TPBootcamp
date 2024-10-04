@@ -1,9 +1,14 @@
-"use client";
+"use client"
 
 import { useContext, createContext, useState } from "react";
 import { ReactNode } from "react";
 
-export const SharedStateContext = createContext<any>(null);
+interface SharedState {
+    cartQuantity: number;
+    setCartQuantity: (quantity: number) => void;
+}
+
+export const SharedStateContext = createContext<SharedState | null>(null);
 
 export const SharedStateProvider = ({ children }: { children: ReactNode }) => {
     const [cartQuantity, setCartQuantity] = useState(0);
@@ -15,10 +20,7 @@ export const SharedStateProvider = ({ children }: { children: ReactNode }) => {
     );
 };
 
-export default function useSharedState() {
-    const context = useContext(SharedStateContext);
-    if (context === undefined) {
-        throw new Error("useSharedState debe estar dentro de un SharedStateProvider");
-    }
-    return context;
+ export function useSharedState() {
+    return useContext(SharedStateContext);
 }
+

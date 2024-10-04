@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 
+
 interface Props {
     title: string;
     image: string;
@@ -11,6 +12,7 @@ interface Props {
 
 export default function Page({params}: {params:{id:string}}){
     const {id} = params;
+    
 
     const [product, setProducts] = useState<Props | null>(null)
     useEffect(()=>{
